@@ -11,9 +11,6 @@
 # production
 /build
 
-# cache
-/node_modules/.cache/
-
 # misc
 .DS_Store
 .env.local

@@ -1,5 +1,7 @@
 import React from 'react';
 import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp'
+import AuthDetails from './components/auth/AuthDetails';
 import './App.css';
 
 class App extends React.Component {
@@ -21,7 +23,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <SignUp />
         <SignIn />
+        <AuthDetails />
       </div>
     );
   }
