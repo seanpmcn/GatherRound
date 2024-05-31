@@ -29,4 +29,4 @@ const AuthDetails = () => {
     )
 }
 
-export default AuthDetails
+export default AuthDetails;
