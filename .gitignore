@@ -24,4 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # private
-firestore-key.json
+firebase-config.json
