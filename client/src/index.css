@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* The following code is used for dark mode*/
+:root {
+  --background-color:white;
+  --primary-text-color:black;
+  --toggle-bg: rgb(250, 250, 106);
+  --toggle-fg: rgb(177, 177, 6);
+}
+/* The following code is used for dark mode*/
+[data-theme="dark"]{
+  --background-color:black;
+  --primary-text-color:white;
+  --toggle-bg: rgb(28, 9, 196);
+  --toggle-fg: rgb(15, 205, 238);
+}
