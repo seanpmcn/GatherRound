@@ -35,7 +35,7 @@ const SignUp = () => {
         }
     }
 
-
+    // Password checklist is just visual. Doesn't affect the validation process. Can be switched to something else easily
     return (
         <div className='sign-in-container'>
             <form onSubmit={signUp}>
