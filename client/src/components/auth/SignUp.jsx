@@ -42,9 +42,9 @@ const SignUp = () => {
                 <h1>Create Account</h1>
                 {messageEmail}
                 
-                <input id="email" type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
-                <input id="password" type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-                <button type="submit">Sign up</button>
+                <input id="email" type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} data-testid='signup-email'></input>
+                <input id="password" type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} data-testid='signup-password'></input>
+                <button type="submit" data-testid='signup-submit'>Sign up</button>
                 <PasswordChecklist
 				rules={["minLength", "maxLength","specialChar","number","capital"]}
 				minLength={8}

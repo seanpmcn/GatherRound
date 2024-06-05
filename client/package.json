@@ -9,7 +9,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-password-checklist": "^1.6.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -37,8 +37,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.24.6",
-    "@babel/preset-react": "^7.24.6",
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
     "@testing-library/user-event": "^14.5.2",
     "babel-jest": "^29.7.0",
     "jest": "^27.5.1",

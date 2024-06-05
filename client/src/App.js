@@ -32,7 +32,7 @@ class App extends React.Component {
 
   render() { 
     return (
-      <div className="App" data-theme={this.state.isDark ? "dark" : "light"}>
+      <div className="App" data-theme={this.state.isDark ? "dark" : "light"} data-testid='app'>
         <SignUp />
         <SignIn />
         <AuthDetails />
