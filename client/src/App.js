@@ -3,11 +3,16 @@ import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp'
 import AuthDetails from './components/auth/AuthDetails';
 import './App.css';
+import {Toggle} from './Toggle/Toggle.js';
 
 class App extends React.Component {
+  
   constructor(props) {
     super(props);
-    this.state = { serverResponse: "" };
+    this.state = { 
+      serverResponse: "" , 
+      isDark: false
+    };
   }
 
   testServerConnection() {
@@ -20,12 +25,20 @@ class App extends React.Component {
     this.testServerConnection();
   }
 
-  render() {
+  // handles dark mode toggle
+  darkToggle = () => {
+    this.setState({isDark: !this.state.isDark})
+  }
+
+  render() { 
     return (
-      <div className="App">
+      <div className="App" data-theme={this.state.isDark ? "dark" : "light"}>
         <SignUp />
         <SignIn />
         <AuthDetails />
+        <Toggle
+          isChecked={this.state.isDark}
+          handleChange={this.darkToggle}/>
       </div>
     );
   }
