@@ -3,8 +3,8 @@ import { auth } from "../../services/firebase";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const SignUp = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
 
     const signUp = (e) => {
         e.preventDefault();
