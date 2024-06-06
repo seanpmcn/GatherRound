@@ -31,27 +31,26 @@ test('should contain sign up element', () => {
 });
 
 // UT-1
-test('should set email', () => {
-    fireEvent.change(signUpEmail, {target: {value: 'test@mail.com'}});
-    fireEvent.change(signUpPassword, {target: {value: 'asdf3#Jkl90'}});
-    fireEvent.click(signUpSubmit);
+test('should sign up', () => {
+    fireEvent.input(signUpEmail, {target: {value: 'test@mail.com'}});
+    fireEvent.input(signUpPassword, {target: {value: 'asdf3#Jkl90'}});
     
-    expect(signUpEmail).toHaveValue('test@mail.com'); 
-    expect(signUpPassword).toHaveValue('asdf3#Jkl90');
+    expect(signUpEmail.value).toBe('test@mail.com'); 
+    expect(signUpPassword.value).toBe('asdf3#Jkl90');
     expect(signUpSubmit.disabled).toBe(false);
 });
 
 // UT-2
 test('should alert invalid email', () => {
-    fireEvent.change(signUpEmail, {target: {value: 'testmail.com'}});
-    fireEvent.change(signUpPassword, {target: {value: 'asdf3#Jkl90'}});
+    fireEvent.input(signUpEmail, {target: {value: 'testmail.com'}});
+    fireEvent.input(signUpPassword, {target: {value: 'asdf3#Jkl90'}});
     
     expect(signUpEmailError.textContent).toBe('Email is Not Valid');
 });
 
 test('should alert invalid  password', () => {
-    fireEvent.change(signUpEmail, {target: {value: 'test@mail.com'}});
-    fireEvent.change(signUpPassword, {target: {value: 'asdfjkl'}});
+    fireEvent.input(signUpEmail, {target: {value: 'test@mail.com'}});
+    fireEvent.input(signUpPassword, {target: {value: 'asdfjkl'}});
     
     expect(signUpPasswordError.textContent).toBe('Password is Not Valid');
 });
