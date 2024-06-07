@@ -1,0 +1,132 @@
+.wrapper {
+    position: relative;
+    width: 420px;
+    height: 450px;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(30px);
+    border-radius: 10px;
+    color: #186e3c; /* Darker green color */
+    overflow: hidden; /* Ensure content doesn't overflow the container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px; /* Shift down into the center */
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.22s ease;
+    background: transparent; /* Ensure form boxes are also transparent */
+}
+
+.wrapper .form-box.login {
+    transform: translateX(0); /* Initial position for login form */
+}
+
+.wrapper .form-box.signup {
+    transform: translateX(100%); /* Initially positioned off-screen to the right */
+}
+
+.wrapper.active .form-box.login {
+    transform: translateX(-100%); /* Move login form off-screen to the left */
+}
+
+.wrapper.active .form-box.signup {
+    transform: translateX(0); /* Move signup form into view */
+}
+
+form h1 {
+    font-size: 36px;
+    text-align: center;
+    color: #fff;
+}
+
+form .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 15px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff; /* White color */
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+    color: #fff; /* White color */
+    font-weight: normal; /* Normal font weight */
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #fff; /* White color */
+}
+
+form .forgot-password {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: 10px 0 15px 21px;
+    color: #fff; /* White color */
+}
+
+.forgot-password a {
+    color: #fff; /* White color */
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+form button {
+    width: 100%;
+    height: 45px;
+    background: #186e3c; /* Darker green color */
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.signup-option {
+    margin-top: 8px;
+}
+
+.signup-option .sign-up, .signup-option .cancel {
+    background-color: #d3d3d3; /* Light gray color */
+    color: #186e3c; /* Darker green color */
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.signup-option .sign-up:hover, .signup-option .cancel:hover {
+    background-color: #b0b0b0; /* Darker gray on hover */
+    color: #186e3c; /* Darker green color */
+}
