@@ -1,6 +1,10 @@
 import React from 'react';
 import LoginSignup from './components/auth/LoginSignup.jsx';
 import './App.css';
+import SignIn from './components/auth/SignIn.jsx';
+import SignUp from './components/auth/SignUp.jsx';
+import AuthDetails from './components/auth/AuthDetails.jsx'
+
 
 class App extends React.Component {
 
@@ -25,7 +29,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="App" data-theme={this.state.isDark ? "dark" : "light"} data-testid='app'>
-        <LoginSignup />
+        {/* <LoginSignup /> */}
+        <SignIn />
+        <SignUp />
+        <AuthDetails />
       </div>
     );
   }
