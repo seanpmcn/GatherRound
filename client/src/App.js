@@ -1,9 +1,8 @@
 import React from 'react';
-import LoginSignup from './components/auth/LoginSignup.jsx';
+import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp';
+import AuthDetails from './components/auth/AuthDetails';
 import './App.css';
-import SignIn from './components/auth/SignIn.jsx';
-import SignUp from './components/auth/SignUp.jsx';
-import AuthDetails from './components/auth/AuthDetails.jsx'
 
 
 class App extends React.Component {

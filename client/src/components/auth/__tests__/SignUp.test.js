@@ -1,7 +1,10 @@
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
+import userEvent from '@testing-library/user-event';
 import { beforeEach, afterEach } from "@jest/globals";
 import SignUp from '../SignUp';
+import { act } from 'react';
 
+let user;
 let signUpElement;
 let signUpForm;
 let signUpEmail;
@@ -12,6 +15,7 @@ let signUpPasswordError;
 
 beforeEach(() => {
 
+    user = userEvent.setup();
     render(<SignUp/>);
     signUpElement = screen.getByTestId('signup-el');
     signUpForm = screen.getByTestId('signup-form');
@@ -31,27 +35,28 @@ test('should contain sign up element', () => {
 });
 
 // UT-1
-test('should set email', () => {
-    fireEvent.change(signUpEmail, {target: {value: 'test@mail.com'}});
-    fireEvent.change(signUpPassword, {target: {value: 'asdf3#Jkl90'}});
-    fireEvent.click(signUpSubmit);
+test('should sign up', async () => {
+    const user = userEvent.setup();
+
+    await user.type(signUpEmail, 'test@mail.com');
+    await user.type(signUpPassword, 'asdf3#Jkl90');
     
-    expect(signUpEmail).toHaveValue('test@mail.com'); 
-    expect(signUpPassword).toHaveValue('asdf3#Jkl90');
+    expect(signUpEmail.value).toBe('test@mail.com'); 
+    expect(signUpPassword.value).toBe('asdf3#Jkl90');
     expect(signUpSubmit.disabled).toBe(false);
 });
 
-// UT-2
-test('should alert invalid email', () => {
-    fireEvent.change(signUpEmail, {target: {value: 'testmail.com'}});
-    fireEvent.change(signUpPassword, {target: {value: 'asdf3#Jkl90'}});
-    
+// // UT-2
+test('should alert invalid email', async () => {    
+    await user.type(signUpEmail, 'testmail.com');
+    await user.type(signUpPassword, 'asdf3#Jkl90');
+
     expect(signUpEmailError.textContent).toBe('Email is Not Valid');
 });
 
-test('should alert invalid  password', () => {
-    fireEvent.change(signUpEmail, {target: {value: 'test@mail.com'}});
-    fireEvent.change(signUpPassword, {target: {value: 'asdfjkl'}});
+test('should alert invalid  password', async () => {
+    await user.type(signUpEmail, 'test@mail.com');
+    await  user.type(signUpPassword, 'asdfjkl');
     
     expect(signUpPasswordError.textContent).toBe('Password is Not Valid');
 });

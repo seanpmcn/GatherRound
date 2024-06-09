@@ -58,7 +58,7 @@ const SignUp = () => {
                 <h1>Create Account</h1>
                 
                 <input id="email" type="email" placeholder="Enter your email" value={email} onChange={(e) => {setEmail(e.target.value); checkCredentials()}} data-testid='signup-email'></input>
-                <input id="password" type="password" placeholder="Enter your password" value={password} onChange={(e) => {setPassword(e.target.value); checkCredentials()}} data-testid='signup-password'></input>
+                <input id="password" type="password" placeholder="Enter your password" value={password} onChange ={(e) => {setPassword(e.target.value); checkCredentials()}} data-testid='signup-password'></input>
                 <button type="submit" data-testid='signup-submit' disabled={!validSignup}>Sign up</button>
                 <p data-testid='signup-email-error'>{emailErrorMessage}</p>
                 <p data-testid='signup-password-error'>{passwordErrorMessage}</p>
