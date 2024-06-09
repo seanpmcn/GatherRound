@@ -25,7 +25,7 @@ const AuthDetails = () => {
         }).catch(error => console.log(error))
     }
     return (
-        <div>{authUser ? <><p>{`Signed in as ${authUser.email}`}</p><button onClick={userSignOut}>Sign Out</button></> : <p>Signed Out</p>}</div>
+        <div>{authUser ? <><p data-testid='auth-signed-in'>{`Signed in as ${authUser.email}`}</p><button onClick={userSignOut}>Sign Out</button></> : <p data-testid='auth-signed-out'>Signed Out</p>}</div>
     )
 }
 
