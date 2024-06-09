@@ -8,7 +8,6 @@ const SignUp = () => {
     const [emailErrorMessage, setEmailErrorMessage] = useState('');
     const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
     const [validSignup, setValidSignup] = useState(false);
-    
 
     //Changes prevent sign up if input doesnt match regex
     // Password regex: 
