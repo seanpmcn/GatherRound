@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { auth } from "../../services/firebase";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
@@ -19,6 +19,10 @@ const SignUp = () => {
     // At least one Numeric digit i.e. [0-9]
     // At least one special character
     // Also, the total length must be in the range [8-16]
+    const regExEmail =  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    const regExPassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/;
+
+
     const signUp = (e) => {
         e.preventDefault();
 
@@ -31,13 +35,8 @@ const SignUp = () => {
         }
     }
 
-    const checkCredentials = () => {
-        const regExEmail =  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-        const regExPassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/;
-
-        if (name == ""){
-            setValidSignup(false);
-        }
+    useEffect(() => {
+        
 
         if (!regExEmail.test(email) && email !== ""){
             setEmailErrorMessage("Email is Not Valid"); 
@@ -45,35 +44,45 @@ const SignUp = () => {
         }else{
             setEmailErrorMessage("");
         }
+    }, [email]);
 
+    useEffect(() => {
+        if (passwordVerification !== password && passwordVerification !== ""){
+            setPasswordVerificationMessage("Passwords do not match");
+            setValidSignup(false);
+        }else{
+            setPasswordVerificationMessage("");
+        }
+    }, [passwordVerification]);
+
+    useEffect(() => {
         if (!regExPassword.test(password) && password !== ""){
             setPasswordErrorMessage("Password is Not Valid");
             setValidSignup(false);
         }else{
             setPasswordErrorMessage("");
         }
+    }, [password])
 
-        if (passwordVerification !== password){
-            setPasswordVerificationMessage("Passwords do not match");
-            setValidSignup(false);
-        }else{
-            setPasswordVerificationMessage("");
-        }
-        
-        if(regExEmail.test(email) && regExPassword.test(password) && name !== "" && passwordVerification === password){
+    useEffect(() => {
+        if(regExEmail.test(email) 
+            && regExPassword.test(password) 
+            && passwordVerification !== ""
+            && passwordVerification === password
+            ){
             setValidSignup(true);
         }
-    }
+    }, [email, password, passwordVerification])
 
     return (
         <div className='sign-in-container' data-testid='signup-el'>
             <form onSubmit={signUp} data-testid='signup-form'>
                 <h1>Create Account</h1>
                 
-                <input id="name" type="name" placeholder="Enter your display name" value={name} onChange={(e) => {setName(e.target.value); checkCredentials()}} data-testid='signup-name'></input>
-                <input id="email" type="email" placeholder="Enter your email" value={email} onChange={(e) => {setEmail(e.target.value); checkCredentials()}} data-testid='signup-email'></input>
-                <input id="password" type="password" placeholder="Enter your password" value={password} onChange ={(e) => {setPassword(e.target.value); checkCredentials()}} data-testid='signup-password'></input>
-                <input id="passwordVerification" type="password" placeholder="Re-enter your password" value={passwordVerification} onChange ={(e) => {setPasswordVerification(e.target.value); checkCredentials()}} data-testid='signup-password-verification'></input>
+                <input id="name" type="name" placeholder="Enter your display name" value={name} onChange={(e) => setName(e.target.value)} data-testid='signup-name'></input>
+                <input id="email" type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} data-testid='signup-email'></input>
+                <input id="password" type="password" placeholder="Enter your password" value={password} onChange ={(e) => setPassword(e.target.value)} data-testid='signup-password'></input>
+                <input id="passwordVerification" type="password" placeholder="Re-enter your password" value={passwordVerification} onChange ={(e) => setPasswordVerification(e.target.value)} data-testid='signup-password-verification'></input>
                 <button type="submit" data-testid='signup-submit' disabled={!validSignup}>Sign up</button>
                 <p data-testid='signup-email-error'>{emailErrorMessage}</p>
                 <p data-testid='signup-password-error'>{passwordErrorMessage}</p>

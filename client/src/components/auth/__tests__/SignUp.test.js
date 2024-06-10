@@ -34,13 +34,11 @@ afterEach(() => {
     cleanup()
 });
 
-test('should contain sign up element', () => {
-    expect(signUpElement).toBeInTheDocument();
-});
-
 // UT-1
 test('should sign up', async () => {
     jest.setTimeout(8000);
+
+    expect(signUpElement).toBeInTheDocument();
 
     await user.type(signUpName, 'John Smith');
     expect(signUpName.value).toBe('John Smith');
@@ -54,13 +52,14 @@ test('should sign up', async () => {
     await user.type(signupPasswordVerification, 'Abcdefgh123!');   
     expect(signupPasswordVerification.value).toBe('Abcdefgh123!');
     
-    await user.click(signUpSubmit);
     expect(signUpSubmit.disabled).toBe(false);
 
 });
 
 // UT-2
-test('should alert invalid email', async () => {    
+test('should alert invalid email', async () => {  
+    expect(signUpElement).toBeInTheDocument();
+
     await user.type(signUpName, 'John Smith');
     expect(signUpName.value).toBe('John Smith');
     
@@ -79,6 +78,8 @@ test('should alert invalid email', async () => {
 
 // UT-4.1: Too short
 test('should alert invalid  password (too short)', async () => { 
+    expect(signUpElement).toBeInTheDocument();
+      
     await user.type(signUpName, 'John Smith');
     expect(signUpName.value).toBe('John Smith');
 
@@ -97,6 +98,8 @@ test('should alert invalid  password (too short)', async () => {
 
 // UT-4.2: Too long
 test('should alert invalid  password (too long)', async () => { 
+    expect(signUpElement).toBeInTheDocument();
+      
     await user.type(signUpName, 'John Smith');
     expect(signUpName.value).toBe('John Smith');
 
@@ -115,6 +118,8 @@ test('should alert invalid  password (too long)', async () => {
 
 // UT-4.3: No special character
 test('should alert invalid  password (no special character)', async () => { 
+    expect(signUpElement).toBeInTheDocument();
+      
     await user.type(signUpName, 'John Smith');
     expect(signUpName.value).toBe('John Smith');
 
@@ -133,6 +138,8 @@ test('should alert invalid  password (no special character)', async () => {
 
 // UT-4.4: No capital letter
 test('should alert invalid  password (no capital letter)', async () => { 
+    expect(signUpElement).toBeInTheDocument();
+      
     await user.type(signUpName, 'John Smith');
     expect(signUpName.value).toBe('John Smith');
 
@@ -151,6 +158,8 @@ test('should alert invalid  password (no capital letter)', async () => {
  
 // UT-4.5: No lowercase letter
 test('should alert invalid  password (no lowercase letter)', async () => { 
+    expect(signUpElement).toBeInTheDocument();
+      
     await user.type(signUpName, 'John Smith');
     expect(signUpName.value).toBe('John Smith');
 
@@ -167,8 +176,10 @@ test('should alert invalid  password (no lowercase letter)', async () => {
     expect(signUpSubmit.disabled).toBe(true);
 });
 
-// UT-4.5: No number
+// UT-4.6: No number
 test('should alert invalid  password (no number)', async () => { 
+    expect(signUpElement).toBeInTheDocument();
+      
     await user.type(signUpName, 'John Smith');
     expect(signUpName.value).toBe('John Smith');
 
@@ -187,6 +198,8 @@ test('should alert invalid  password (no number)', async () => {
 
 // UT-5
 test('should alert non-matching passwords', async () => {
+    expect(signUpElement).toBeInTheDocument();
+      
     await user.type(signUpName, 'John Smith');
     expect(signUpName.value).toBe('John Smith');
 
