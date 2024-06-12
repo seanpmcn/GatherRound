@@ -12,6 +12,6 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /* background: url('./assets/GatherRoundBackground.jpg') no-repeat center center fixed; */
-  /* background-size: cover; */
+  background: url('./assets/GatherRoundBackground.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
