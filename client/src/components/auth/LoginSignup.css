@@ -1,7 +1,6 @@
 .wrapper {
     position: relative;
     width: 420px;
-    height: 450px;
     background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
     border: 2px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(30px);
@@ -9,35 +8,37 @@
     color: #186e3c; /* Darker green color */
     overflow: hidden; /* Ensure content doesn't overflow the container */
     display: flex;
+    flex-direction: column; /* Stack form-boxes vertically */
     align-items: center;
     justify-content: center;
-    margin-top: 50px; /* Shift down into the center */
+    margin-top: 150px; /* Shift down into the center */
+    padding: 20px; /* Add some padding for aesthetics */
 }
 
 .wrapper .form-box {
     width: 100%;
     padding: 40px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: transform 0.22s ease;
     background: transparent; /* Ensure form boxes are also transparent */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.50s ease;
 }
 
 .wrapper .form-box.login {
-    transform: translateX(0); /* Initial position for login form */
+    display: block; /* Show login form by default */
 }
 
 .wrapper .form-box.signup {
-    transform: translateX(100%); /* Initially positioned off-screen to the right */
+    display: none; /* Hide signup form by default */
 }
 
 .wrapper.active .form-box.login {
-    transform: translateX(-100%); /* Move login form off-screen to the left */
+    display: none; /* Hide login form when signup is active */
 }
 
 .wrapper.active .form-box.signup {
-    transform: translateX(0); /* Move signup form into view */
+    display: block; /* Show signup form when active */
 }
 
 form h1 {
@@ -111,11 +112,11 @@ form button {
     font-weight: 700;
 }
 
-.signup-option {
+.signup-option, .cancel-option {
     margin-top: 8px;
 }
 
-.signup-option .sign-up, .signup-option .cancel {
+.signup-option .sign-up, .cancel-option .cancel {
     background-color: #d3d3d3; /* Light gray color */
     color: #186e3c; /* Darker green color */
     border: none;
