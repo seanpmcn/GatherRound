@@ -209,9 +209,9 @@ test('should alert non-matching passwords', async () => {
     await user.type(signUpPassword, 'Abcdefgh123!');   
     expect(signUpPassword.value).toBe('Abcdefgh123!');
 
-    await user.type(signupPasswordVerification, 'Abcdefgh123?');   
+    await user.type(signupPasswordVerification, 'Abcdefgh123?');  
     expect(signupPasswordVerification.value).toBe('Abcdefgh123?');
-    expect(signupPasswordVerificationMessage.value).toBe('Passwords do not match');
+    expect(signupPasswordVerificationMessage.textContent).toBe('Passwords do not match');
 
     expect(signUpSubmit.disabled).toBe(true);
 });
