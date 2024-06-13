@@ -1,7 +1,9 @@
-import React from 'react';
-import LoginSignup from './components/auth/LoginSignup'
 import './App.css';
-
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import LoginSignup from './components/auth/LoginSignup'
+import EmailVerification from "./components/auth/EmailVerification";
+import Homepage from "./components/auth/Homepage";
 
 class App extends React.Component {
 
@@ -23,10 +25,17 @@ class App extends React.Component {
     this.testServerConnection();
   }
 
+  // Added Router that facilitates page navigation
   render() {
     return (
       <div className="App" data-theme={this.state.isDark ? "dark" : "light"} data-testid='app'>
-        <LoginSignup />
+        <Router>
+          <Routes>
+            <Route path="/" element={<LoginSignup/>}/>
+            <Route path="EmailVerification" element={<EmailVerification/>}/>
+            <Route path="Homepage" element={<Homepage/>}/>
+          </Routes>
+        </Router>
       </div>
     );
   }
