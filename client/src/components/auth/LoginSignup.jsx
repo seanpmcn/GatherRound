@@ -29,7 +29,13 @@ const LoginSignup = () => {
     const [goToHomepage, setGoToHomepage] = useState(false);
     const auth = getAuth();
 
-    
+    // Reset email and password fields when switching modes
+    useEffect(() => {
+        setEmail('');
+        setPassword('');
+        setPasswordVerification('');
+    }, [action]);
+
     // Handle Login form submission
     const login = (e) => {
         e.preventDefault(); // Prevent default form submission behavior
