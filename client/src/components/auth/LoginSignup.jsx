@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './LoginSignup.css';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
 import { auth } from "../../services/firebase"
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, getAuth } from 'firebase/auth';
+import { Navigate } from 'react-router-dom';
 
 const LoginSignup = () => {
     // State to control the current action ('active' for signup, '' for login)
@@ -24,16 +25,41 @@ const LoginSignup = () => {
     const regExEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     const regExPassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/;
 
+    const [goToEmailVerification, setGoToEmailVerification] = useState(false);
+    const [goToHomepage, setGoToHomepage] = useState(false);
+    const auth = getAuth();
+
+    // Reset email and password fields when switching modes
+    useEffect(() => {
+        setEmail('');
+        setPassword('');
+        setPasswordVerification('');
+    }, [action]);
+
     // Handle Login form submission
     const login = (e) => {
         e.preventDefault(); // Prevent default form submission behavior
 
         // Use Firebase authentication to sign in with email and password
-        signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-            console.log(userCredential); // Log the user credential on successful login
-        }).catch((error) => {
-            console.log(error); // Log any errors that occur during login
-        });
+        // Only allowing verified users to sign in
+        signInWithEmailAndPassword(auth, email, password ).then(authUser => {
+            if(authUser.user.emailVerified){ //This will return true or false
+             console.log('email is verified')
+             setGoToHomepage(true);
+            }else{
+              console.log('email not verified')
+            }
+            }).catch((error) => {
+                  console.log(error); // Log any errors that occur during login
+          });
+
+        //I kept this here as a comment in case something doesn't work.
+    //    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+    //         console.log(userCredential); // Log the user credential on successful login
+    //         setGoToHomepage(true);
+    //     }).catch((error) => {
+    //       console.log(error); // Log any errors that occur during login
+    //     });
     }
 
     // Handle Signup form submission
@@ -44,6 +70,7 @@ const LoginSignup = () => {
             // Use Firebase authentication to create a new user with email and password
             createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
                 console.log(userCredential); // Log the user credential on successful signup
+                setGoToEmailVerification(true);
             }).catch((error) => {
                 console.log(error); // Log any errors that occur during signup
             });
@@ -62,6 +89,7 @@ const LoginSignup = () => {
         setAction(''); // Reset action to show login form
     }
 
+    
     // Validate email format and update error message
     useEffect(() => {
         if (!regExEmail.test(email) && email !== "") {
@@ -102,6 +130,19 @@ const LoginSignup = () => {
             setValidSignup(true);
         }
     }, [email, password, passwordVerification]);
+
+
+    //Sends email verification and navigates user to email verification page
+    if(goToEmailVerification){
+        sendEmailVerification(auth.currentUser);
+        return <Navigate to ="EmailVerification"/>;
+    }
+
+    //Navigates user to homepage
+    if(goToHomepage){
+        return <Navigate to ="Homepage"/>;
+    }
+    
 
     return (
         <div className={`wrapper ${action}`}>
