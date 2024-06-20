@@ -70,6 +70,7 @@ const LoginSignup = () => {
             // Use Firebase authentication to create a new user with email and password
             createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
                 console.log(userCredential); // Log the user credential on successful signup
+                sendEmailVerification(auth.currentUser);
                 setGoToEmailVerification(true);
             }).catch((error) => {
                 console.log(error); // Log any errors that occur during signup
@@ -134,7 +135,6 @@ const LoginSignup = () => {
 
     //Sends email verification and navigates user to email verification page
     if(goToEmailVerification){
-        sendEmailVerification(auth.currentUser);
         return <Navigate to ="EmailVerification"/>;
     }
 
