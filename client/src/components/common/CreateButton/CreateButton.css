@@ -1,3 +1,8 @@
+.create-button-container {
+    position: relative;
+    display: inline-block;
+}
+
 .create-button {
     width: 40px;
     height: 40px;
@@ -15,4 +20,27 @@
 
 .create-button:hover {
     color: #b0b0b0; /* Darker gray on hover */
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 100px;
+    background-color: #b0b0b0; /* Gray background color */
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Adjust the position as needed */
+    left: 50%;
+    margin-left: -50px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px; /* Adjust the font size as needed */
+}
+
+.create-button-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
 }

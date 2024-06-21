@@ -4,9 +4,12 @@ import './CreateButton.css';
 
 const CreateButton = ({ onClick }) => {
     return (
-        <button className="create-button" onClick={onClick}>
-            <FaPlus className='icon' />
-        </button>
+        <div className='create-button-container'>
+            <button className='create-button' onClick={onClick}>
+                <FaPlus className='icon' />
+            </button>
+            <span className='tooltip'>Create club</span>
+        </div>
     );
 };
 
