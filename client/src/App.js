@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginSignup from './components/auth/LoginSignup'
 import EmailVerification from "./components/auth/EmailVerification";
-import Homepage from "./components/auth/Homepage";
+import Homepage from "./components/homepage/Homepage";
 
 class App extends React.Component {
 
