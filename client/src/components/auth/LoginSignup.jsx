@@ -165,7 +165,7 @@ const LoginSignup = () => {
                     <button type="submit">Login</button>
 
                     <div className='signup-option'>
-                        <button className='sign-up' type="button" onClick={signupSwitch}>Sign Up</button>
+                        <button className='sign-up' type="button" onClick={signupSwitch} data-testid='signup-switch'>Sign Up</button>
                     </div>
                 </form>
             </div>
@@ -191,7 +191,7 @@ const LoginSignup = () => {
                         <FaLock className='icon' />
                     </div>
 
-                    <button type="submit" data-test-id='signup-submit' disabled={!validSignup}>Sign Up</button>
+                    <button type="submit" data-testid='signup-submit' disabled={!validSignup} >Sign Up</button>
 
                     <div className='cancel-option'>
                         <button className='cancel' type="button" onClick={loginSwitch}>Cancel</button>
