@@ -1,9 +1,12 @@
-import "./Homepage.css"; 
-import CreateButton from "../common/CreateButton/CreateButton"; 
-import { useNavigate } from "react-router-dom"; 
+import React, { useState } from "react";
+import "./Homepage.css";
+import CreateButton from "../common/CreateButton/CreateButton";
+import CreateClubModal from "./CreateClubModal";
+import { useNavigate } from "react-router-dom";
 
 function Homepage() {
     const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false); // State to control modal visibility
 
     // Temporary list of club names
     const tempClubList = [
@@ -13,6 +16,14 @@ function Homepage() {
         'Clue Sleuths',
         'Chess Champions'
     ];
+
+    const viewModal = () => {
+        setShowModal(true); // Show the modal when Create Club is clicked
+    }
+
+    const closeModal = () => {
+        setShowModal(false); // Close the modal
+    }
 
     return (
         <div>
@@ -31,8 +42,11 @@ function Homepage() {
                 </div>
                 <div className='create-club'>
                     {/* Create club button */}
-                    <CreateButton onClick={null} />
-                    {/* Placeholder onClick handler */}
+                    <CreateButton onClick={viewModal} />
+                </div>
+                <div className='create-club-modal'>
+                    {/* Redner the modal */}
+                    <CreateClubModal show={showModal} onClose={closeModal} />
                 </div>
             </div>
         </div>
