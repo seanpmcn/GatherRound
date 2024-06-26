@@ -1,12 +1,18 @@
-import React, { useState } from "react";
-import "./Homepage.css";
-import CreateButton from "../common/CreateButton/CreateButton";
-import CreateClubModal from "./CreateClubModal";
-import { useNavigate } from "react-router-dom";
+import "./Homepage.css"; 
+import React, { useState} from 'react';
+import CreateButton from "../common/CreateButton/CreateButton"; 
+import { signOut } from 'firebase/auth';
+import { auth } from "../../services/firebase"
+import { useNavigate } from "react-router-dom"; 
+import { Navigate } from 'react-router-dom';
+
 
 function Homepage() {
     const navigate = useNavigate();
-    const [showModal, setShowModal] = useState(false); // State to control modal visibility
+    const [user, setUser] = useState({});
+    
+
+    const [goToClub, setGoToClub] = useState(false);
 
     // Temporary list of club names
     const tempClubList = [
@@ -23,6 +29,15 @@ function Homepage() {
 
     const closeModal = () => {
         setShowModal(false); // Close the modal
+
+    if (goToClub){
+        return <Navigate to ="Clubs"/>;
+    }
+
+    const logOut = () => {
+         signOut(auth)
+         return <Navigate to="/"/>;
+    }
     }
 
     return (
@@ -30,13 +45,15 @@ function Homepage() {
             <div className='header'>
                 <h1>GatherRound</h1>
                 <p>Let the games begin!</p>
+                <button onClick={logOut}> Logout </button>
             </div>
             <div className='homepage-wrapper'>
                 {/* Main wrapper for the homepage content */}
                 <div className='scrollable-list'>
                     {/* Scrollable list of club buttons */}
                     {tempClubList.map((club, index) => (
-                        <button key={index} className='club-button'>{club}</button>
+                        <button onClick={(e) => setGoToClub(true)} key={index} className='club-button'>{club}
+                        </button>
                         // Mapping through tempClubList to create club buttons
                     ))}
                 </div>
