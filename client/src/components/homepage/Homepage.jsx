@@ -1,18 +1,15 @@
 import "./Homepage.css"; 
 import React, { useState} from 'react';
 import CreateButton from "../common/CreateButton/CreateButton"; 
+import CreateClubModal from "./CreateClubModal";
 import { signOut } from 'firebase/auth';
 import { auth } from "../../services/firebase"
 import { useNavigate } from "react-router-dom"; 
 import { Navigate } from 'react-router-dom';
 
-
 function Homepage() {
     const navigate = useNavigate();
-    const [user, setUser] = useState({});
-    
-
-    const [goToClub, setGoToClub] = useState(false);
+    const [showModal, setShowModal] = useState(false); // State to control modal visibility
 
     // Temporary list of club names
     const tempClubList = [
@@ -29,16 +26,13 @@ function Homepage() {
 
     const closeModal = () => {
         setShowModal(false); // Close the modal
-
-    if (goToClub){
-        return <Navigate to ="Clubs"/>;
     }
 
     const logOut = () => {
          signOut(auth)
          return <Navigate to="/"/>;
     }
-    }
+
 
     return (
         <div>
@@ -52,7 +46,7 @@ function Homepage() {
                 <div className='scrollable-list'>
                     {/* Scrollable list of club buttons */}
                     {tempClubList.map((club, index) => (
-                        <button onClick={(e) => setGoToClub(true)} key={index} className='club-button'>{club}
+                        <button onClick={(e) => navigate("Clubs")} key={index} className='club-button'>{club}
                         </button>
                         // Mapping through tempClubList to create club buttons
                     ))}

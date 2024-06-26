@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import './LoginSignup.css';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, getAuth } from 'firebase/auth';
 import { Navigate } from 'react-router-dom';
 
 const LoginSignup = () => {
@@ -27,7 +27,6 @@ const LoginSignup = () => {
     const [goToEmailVerification, setGoToEmailVerification] = useState(false);
     const [goToHomepage, setGoToHomepage] = useState(false);
     const auth = getAuth();
-    const user = auth.currentUser;
 
     // Reset email and password fields when switching modes
     useEffect(() => {
@@ -70,9 +69,6 @@ const LoginSignup = () => {
         }
     }
 
-    const logout = () => {
-        return signOut(auth)
-    }
 
     // Switch to signup view
     const signupSwitch = (e) => {
