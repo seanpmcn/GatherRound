@@ -1,19 +1,12 @@
 import "./Clubs.css"; 
 import React from 'react';
-//import { useNavigate } from "react-router-dom"; 
 //import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 function Clubs() {
-  
 
-
-    // Temporary list of options
-    const optionsList = [
-        'Activity List',
-        'Member List',
-        'Manage Members',
-        'Leave Club'
-    ];
+    const navigate = useNavigate();
 
     const messagesList = [
         'Message 1',
@@ -39,9 +32,10 @@ function Clubs() {
                             {/* Main wrapper for the activity messages */}
                             <div className='options-list'>
                                 {/* Scrollable list of activity messages*/}
-                                {optionsList.map((options, index) => (
-                                    <button onClick={(e) => null} key={index} className='options'>{options}</button>  
-                                ))}
+                                    <button type="button" onClick={(e) => navigate("ActivityList")}  className='options'>List of Activities</button>  
+                                    <button type="button" onClick={(e) => navigate("MemberList")}  className='options'>List of Members</button>  
+                                    <button type="button" onClick={(e) => navigate(-1)}  className='options'>Return Home</button>  
+                                    <button type="button" onClick={(e) => null}  className='options'>Leave Club</button>  
                             </div>
                     </div>
                         <div className='activity-wrapper'>
