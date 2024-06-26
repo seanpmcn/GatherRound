@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginSignup from './components/auth/LoginSignup'
 import EmailVerification from "./components/auth/EmailVerification";
 import Homepage from "./components/auth/Homepage";
+import DatabaseTest from './database/DatabaseTest';
+
 
 class App extends React.Component {
 
@@ -34,6 +36,7 @@ class App extends React.Component {
             <Route path="/" element={<LoginSignup/>}/>
             <Route path="EmailVerification" element={<EmailVerification/>}/>
             <Route path="Homepage" element={<Homepage/>}/>
+            <Route path="DatabaseTest" element={<DatabaseTest/>}/>
           </Routes>
         </Router>
       </div>
