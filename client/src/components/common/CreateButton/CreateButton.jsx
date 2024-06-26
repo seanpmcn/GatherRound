@@ -8,7 +8,7 @@ const CreateButton = ({ onClick }) => {
             <button className='create-button' onClick={onClick}>
                 <FaPlus className='icon' />
             </button>
-            <span className='tooltip'>Create club</span>
+            <span className='tooltip'>Create new</span>
         </div>
     );
 };

@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import './LoginSignup.css';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
-import { auth } from "../../services/firebase"
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, getAuth } from 'firebase/auth';
 import { Navigate } from 'react-router-dom';
 
 const LoginSignup = () => {
     // State to control the current action ('active' for signup, '' for login)
     const [action, setAction] = useState('');
-
+  
     // State to manage the name, email, and password inputs
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -52,14 +51,6 @@ const LoginSignup = () => {
             }).catch((error) => {
                   console.log(error); // Log any errors that occur during login
           });
-
-        //I kept this here as a comment in case something doesn't work.
-    //    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-    //         console.log(userCredential); // Log the user credential on successful login
-    //         setGoToHomepage(true);
-    //     }).catch((error) => {
-    //       console.log(error); // Log any errors that occur during login
-    //     });
     }
 
     // Handle Signup form submission
@@ -71,11 +62,13 @@ const LoginSignup = () => {
             createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
                 console.log(userCredential); // Log the user credential on successful signup
                 setGoToEmailVerification(true);
+                sendEmailVerification(auth.currentUser);
             }).catch((error) => {
                 console.log(error); // Log any errors that occur during signup
             });
         }
     }
+
 
     // Switch to signup view
     const signupSwitch = (e) => {
@@ -134,7 +127,6 @@ const LoginSignup = () => {
 
     //Sends email verification and navigates user to email verification page
     if(goToEmailVerification){
-        sendEmailVerification(auth.currentUser);
         return <Navigate to ="EmailVerification"/>;
     }
 

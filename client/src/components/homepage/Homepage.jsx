@@ -1,11 +1,17 @@
+import "./Homepage.css"; 
+import React, { useState} from 'react';
+import CreateButton from "../common/CreateButton/CreateButton"; 
 import React, { useState, useEffect } from "react";
 import "./Homepage.css";
 import CreateButton from "../common/CreateButton/CreateButton";
 import CreateClubModal from "./CreateClubModal";
+import { signOut } from 'firebase/auth';
+import { auth } from "../../services/firebase"
 import { getAuth } from 'firebase/auth';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from "../../services/firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
+import { Navigate } from 'react-router-dom';
 import ProfileButton from "../common/ProfileButton/ProfileButton";
 
 function Homepage() {
@@ -59,6 +65,12 @@ function Homepage() {
         setShowModal(false); // Close the modal
     }
 
+    const logOut = () => {
+         signOut(auth)
+         return <Navigate to="/"/>;
+    }
+
+
     // Function to set the success or failure message
     const handleSetMessage = (newMessage) => {
         setMessage(newMessage);
@@ -79,12 +91,14 @@ function Homepage() {
             <div className='header'>
                 <h1>GatherRound</h1>
                 <p>Let the games begin!</p>
+                <button onClick={logOut}> Logout </button>
             </div>
             <div className='homepage-wrapper'>
                 <div className='scrollable-list'>
                     {/* Scrollable list of club buttons */}
                     {clubs.map((club, index) => (
-                        <button key={index} className='club-button'>{club.name}</button>
+                        <button onClick={(e) => navigate("Clubs")} key={index} className='club-button'>{club.name}
+                        </button>
                         // Mapping through tempClubList to create club buttons
                     ))}
                 </div>
