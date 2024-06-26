@@ -6,6 +6,7 @@ import { getAuth } from 'firebase/auth';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from "../../services/firebase";
 import { useNavigate } from "react-router-dom";
+import ProfileButton from "../common/ProfileButton/ProfileButton";
 
 function Homepage() {
     const navigate = useNavigate();
@@ -66,8 +67,15 @@ function Homepage() {
         }, 3000); // Hide the message after 3 seconds
     };
 
+    // Function to handle profile button click
+    const handleProfileClick = () => {
+        // TODO: Implement profile button click logic
+    };
+
+
     return (
         <div>
+            <ProfileButton onClick={handleProfileClick} />
             <div className='header'>
                 <h1>GatherRound</h1>
                 <p>Let the games begin!</p>
