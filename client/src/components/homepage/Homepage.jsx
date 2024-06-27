@@ -1,9 +1,6 @@
 import "./Homepage.css"; 
-import React, { useState} from 'react';
 import CreateButton from "../common/CreateButton/CreateButton"; 
 import React, { useState, useEffect } from "react";
-import "./Homepage.css";
-import CreateButton from "../common/CreateButton/CreateButton";
 import CreateClubModal from "./CreateClubModal";
 import { signOut } from 'firebase/auth';
 import { auth } from "../../services/firebase"
