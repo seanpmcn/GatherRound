@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './LoginSignup.css';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
-import { auth } from "../../services/firebase"
+import { auth, db } from "../../services/firebase";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, getAuth } from 'firebase/auth';
 import { Navigate } from 'react-router-dom';
+import { doc, setDoc } from "firebase/firestore";
 
 const LoginSignup = () => {
     // State to control the current action ('active' for signup, '' for login)
@@ -68,8 +69,18 @@ const LoginSignup = () => {
 
         if (validSignup) {
             // Use Firebase authentication to create a new user with email and password
-            createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+            createUserWithEmailAndPassword(auth, email, password).then(async (userCredential) => {
                 console.log(userCredential); // Log the user credential on successful signup
+                // Add user data to Firestore Users collection
+                try {
+                    const userDoc = await setDoc(doc(db, 'Users', auth.currentUser.uid), {
+                        name: name,
+                        email: email
+                    });
+                    console.log('New user added with ID: ', userDoc.id);
+                }catch(err){
+                    console.log('Error adding user: ', err)
+                }
                 sendEmailVerification(auth.currentUser);
                 setGoToEmailVerification(true);
             }).catch((error) => {
