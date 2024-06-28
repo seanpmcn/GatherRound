@@ -158,15 +158,15 @@ const LoginSignup = () => {
     return (
         <div className={`wrapper ${action}`}>
             {/* Login form */}
-            <div className='form-box login'>
+            <div className='form-box login' data-testid='login-el'>
                 <form onSubmit={login}>
                     <h1>Login</h1>
                     <div className='input-box'>
-                        <input type="email" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+                        <input type="email" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} data-testid='login-email' required />
                         <FaEnvelope className='icon' />
                     </div>
                     <div className='input-box'>
-                        <input type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        <input type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} data-testid='login-password' required />
                         <FaLock className='icon' />
                     </div>
                     <div className='forgot-password'>
