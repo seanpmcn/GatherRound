@@ -17,18 +17,18 @@ let signupPasswordVerificationMessage;
 
 beforeEach(() => {
     user = userEvent.setup();
-    render(<LoginSignup/>);
+    const { getByTestId } = render(<LoginSignup/>);
+    singUpSwitch = getByTestId('signup-switch');
     user.click(singUpSwitch);
-    singUpSwitch = screen.getByTestId('signup-switch');
-    signUpElement = screen.getByTestId('signup-el');
-    signUpName = screen.getByTestId('signup-name');
-    signUpEmail = screen.getByTestId('signup-email');
-    signUpPassword = screen.getByTestId('signup-password');
-    signupPasswordVerification = screen.getByTestId('signup-password-verification');
-    signUpSubmit = screen.getByTestId('signup-submit');
-    signUpEmailError = screen.getByTestId('signup-email-error');
-    signUpPasswordError = screen.getByTestId('signup-password-error');
-    signupPasswordVerificationMessage = screen.getByTestId('signup-password-verification-message');
+    signUpElement = getByTestId('signup-el');
+    signUpName = getByTestId('signup-name');
+    signUpEmail = getByTestId('signup-email');
+    signUpPassword = getByTestId('signup-password');
+    signupPasswordVerification = getByTestId('signup-password-verification');
+    signUpSubmit = getByTestId('signup-submit');
+    signUpEmailError = getByTestId('signup-email-error');
+    signUpPasswordError = getByTestId('signup-password-error');
+    signupPasswordVerificationMessage = getByTestId('signup-password-verification-message');
 
 });
 
@@ -218,3 +218,7 @@ test('should alert non-matching passwords', async () => {
 
     expect(signUpSubmit.disabled).toBe(true);
 });
+
+// TODO: Address warning from lack of "act" method.
+
+// TODO: Add Login tests

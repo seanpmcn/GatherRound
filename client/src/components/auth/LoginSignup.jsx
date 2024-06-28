@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './LoginSignup.css';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
-import { auth, db } from "../../services/firebase";
+import { db } from "../../services/firebase";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, getAuth } from 'firebase/auth';
 import { Navigate } from 'react-router-dom';
 import { doc, setDoc } from "firebase/firestore";
@@ -110,7 +110,7 @@ const LoginSignup = () => {
         } else {
             setEmailErrorMessage("");
         }
-    }, [email]);
+    }, [email, regExEmail]);
 
     // Validate password verification and update error message
     useEffect(() => {
@@ -120,7 +120,7 @@ const LoginSignup = () => {
         } else {
             setPasswordVerificationMessage("");
         }
-    }, [passwordVerification]);
+    }, [passwordVerification, password]);
 
     // Validate password format and update error message
     useEffect(() => {
@@ -130,7 +130,7 @@ const LoginSignup = () => {
         } else {
             setPasswordErrorMessage("");
         }
-    }, [password]);
+    }, [password, regExPassword]);
 
     // Check if all signup conditions are met
     useEffect(() => {
@@ -141,7 +141,7 @@ const LoginSignup = () => {
         ) {
             setValidSignup(true);
         }
-    }, [email, password, passwordVerification]);
+    }, [email, password, passwordVerification, regExEmail, regExPassword]);
 
 
     //Sends email verification and navigates user to email verification page
