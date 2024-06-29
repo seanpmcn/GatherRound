@@ -32,7 +32,7 @@ describe('Login', () => {
         cleanup();
     });
 
-    //UT-6
+    //UT-7: Able to fill out login
     test('should accept input', async () => {
         jest.setTimeout(8000);
 
@@ -69,7 +69,7 @@ describe('Signup', () => {
         cleanup()
     });
 
-    // UT-1
+    // UT-1: Able to sign up
     // TO-DO: Fix timeout issue
     test('should sign up', async () => {
         jest.setTimeout(8000);
@@ -92,7 +92,7 @@ describe('Signup', () => {
 
     });
 
-    // UT-2
+    // UT-2: Unable to sign up with invalid email
     test('should alert invalid email', async () => {  
         jest.setTimeout(8000);
 
@@ -114,7 +114,7 @@ describe('Signup', () => {
         expect(signUpSubmit.disabled).toBe(true);;
     });
 
-    // UT-4.1: Too short
+    // UT-4.1: Unable to sign up with existing user email (too short)
     test('should alert invalid  password (too short)', async () => { 
         jest.setTimeout(8000);
         
@@ -136,7 +136,7 @@ describe('Signup', () => {
         expect(signUpSubmit.disabled).toBe(true);
     });
 
-    // UT-4.2: Too long
+    // UT-4.2: Unable to sign up with existing user email (too long)
     test('should alert invalid  password (too long)', async () => { 
         jest.setTimeout(8000);
         
@@ -158,7 +158,7 @@ describe('Signup', () => {
         expect(signUpSubmit.disabled).toBe(true);
     });
 
-    // UT-4.3: No special character
+    // UT-4.3: Unable to sign up with existing user email (no special character)
     test('should alert invalid  password (no special character)', async () => { 
         jest.setTimeout(8000);
         
@@ -180,7 +180,7 @@ describe('Signup', () => {
         expect(signUpSubmit.disabled).toBe(true);
     });
 
-    // UT-4.4: No capital letter
+    // UT-4.4: Unable to sign up with existing user email (no capital letter)
     test('should alert invalid  password (no capital letter)', async () => { 
         jest.setTimeout(8000);
         
@@ -202,7 +202,7 @@ describe('Signup', () => {
         expect(signUpSubmit.disabled).toBe(true);
     });
     
-    // UT-4.5: No lowercase letter
+    // UT-4.5: Unable to sign up with existing user email (no lowercase letter)
     test('should alert invalid  password (no lowercase letter)', async () => { 
         jest.setTimeout(8000);
         
@@ -224,7 +224,7 @@ describe('Signup', () => {
         expect(signUpSubmit.disabled).toBe(true);
     });
 
-    // UT-4.6: No number
+    // UT-4.6: Unable to sign up with existing user email (no number)
     test('should alert invalid  password (no number)', async () => { 
         jest.setTimeout(8000);
         
@@ -246,7 +246,7 @@ describe('Signup', () => {
         expect(signUpSubmit.disabled).toBe(true);
     });
 
-    // UT-5
+    // UT-5: Unable to sign up with non-matching passwords
     test('should alert non-matching passwords', async () => {
         jest.setTimeout(8000);
         
